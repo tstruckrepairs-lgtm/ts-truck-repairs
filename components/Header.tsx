@@ -27,6 +27,7 @@ export default function Header() {
         </Link>
         <nav>
           <a href="#features">Why Us</a>
+          <Link href="/gallery">Gallery</Link>
           <a href="#contact">Contact</a>
           <Link href="/contact">Get Quote</Link>
         </nav>

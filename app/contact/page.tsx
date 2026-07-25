@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,10 @@ export default function ContactPage() {
 
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  // Initialize EmailJS
+  emailjs.init('YOUR_EMAILJS_PUBLIC_KEY') // You'll need to update this
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -29,11 +34,24 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
+    setError('')
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      console.log('Form submitted:', formData)
+      // Send email via EmailJS
+      await emailjs.send(
+        'service_tstruckrepairs', // You'll need to set this up
+        'template_quote_request', // You'll need to set this up
+        {
+          to_email: 'tstruckrepairs@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          truck_type: formData.truckType || 'Not specified',
+          service: formData.service || 'Not specified',
+          message: formData.message,
+        }
+      )
+
       setSubmitted(true)
       setFormData({
         name: '',
@@ -45,7 +63,8 @@ export default function ContactPage() {
       })
       setTimeout(() => setSubmitted(false), 5000)
     } catch (error) {
-      console.error('Error submitting form:', error)
+      console.error('Error sending email:', error)
+      setError('Failed to send quote request. Please try again or call us directly.')
     } finally {
       setLoading(false)
     }
@@ -55,13 +74,19 @@ export default function ContactPage() {
     <>
       <Header />
       <main className="contact-page">
-        <div className="container" style={{paddingTop: '100px'}}>
+        <div className="container" style={{paddingTop: '100px', paddingBottom: '50px'}}>
           <h1 style={{fontSize: '42px', marginBottom: '10px', color: '#00c9a7'}}>Get Your Free Quote</h1>
           <p style={{textAlign: 'center', color: '#ccc', marginBottom: '30px', fontSize: '18px'}}>Fill out the form below and we'll get back to you within 24 hours</p>
 
           {submitted && (
             <div style={{background: '#4caf50', color: 'white', padding: '15px', borderRadius: '8px', marginBottom: '30px', textAlign: 'center', fontWeight: '500'}}>
               ✓ Thank you! Your quote request has been received. We'll contact you soon!
+            </div>
+          )}
+
+          {error && (
+            <div style={{background: '#f44336', color: 'white', padding: '15px', borderRadius: '8px', marginBottom: '30px', textAlign: 'center', fontWeight: '500'}}>
+              ⚠ {error}
             </div>
           )}
 
@@ -187,6 +212,23 @@ export default function ContactPage() {
               <p style={{color: '#aaa'}}><strong>📍 Location:</strong> 1 Oakbridge Place, Oaklands, Verulam 4339</p>
             </div>
           </div>
+
+          {/* Google Map */}
+          <section style={{marginTop: '50px'}}>
+            <h2 style={{fontSize: '32px', color: '#00c9a7', marginBottom: '30px', textAlign: 'center'}}>Find Us</h2>
+            <div style={{borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0, 201, 167, 0.2)', height: '450px'}}>
+              <iframe
+                width="100%"
+                height="450"
+                style={{border: 0}}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3328.8659265347377!2d31.03799!3d-29.78456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef50f0f0f0f0f0f%3A0x0!2s1%20Oakbridge%20Place%2C%20Oaklands%2C%20Verulam%204339!5e0!3m2!1sen!2sza!4v1234567890"
+              />
+            </div>
+            <p style={{color: '#ccc', marginTop: '20px', textAlign: 'center', fontSize: '14px'}}>📍 1 Oakbridge Place, Oaklands, Verulam 4339, South Africa</p>
+          </section>
         </div>
       </main>
       <Footer />
