@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import styles from './page.module.css'
+import { useState } from 'react'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -32,7 +32,6 @@ export default function ContactPage() {
 
     try {
       // Simulate form submission
-      // In production, send to your backend/email service
       await new Promise(resolve => setTimeout(resolve, 1000))
       console.log('Form submitted:', formData)
       setSubmitted(true)
@@ -55,20 +54,20 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className={styles.contactPage}>
-        <div className={styles.container}>
-          <h1>Get Your Free Quote</h1>
-          <p className={styles.subtitle}>Fill out the form below and we'll get back to you within 24 hours</p>
+      <main className="contact-page">
+        <div className="container" style={{paddingTop: '100px'}}>
+          <h1 style={{fontSize: '42px', marginBottom: '10px', color: '#00c9a7'}}>Get Your Free Quote</h1>
+          <p style={{textAlign: 'center', color: '#ccc', marginBottom: '30px', fontSize: '18px'}}>Fill out the form below and we'll get back to you within 24 hours</p>
 
           {submitted && (
-            <div className={styles.successMessage}>
+            <div style={{background: '#4caf50', color: 'white', padding: '15px', borderRadius: '8px', marginBottom: '30px', textAlign: 'center', fontWeight: '500'}}>
               ✓ Thank you! Your quote request has been received. We'll contact you soon!
             </div>
           )}
 
-          <div className={styles.content}>
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <div className={styles.formGroup}>
+          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', alignItems: 'start', marginBottom: '50px'}}>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
                 <label htmlFor="name">Full Name *</label>
                 <input
                   type="text"
@@ -81,8 +80,8 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
+              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px'}}>
+                <div className="form-group">
                   <label htmlFor="email">Email *</label>
                   <input
                     type="email"
@@ -94,7 +93,7 @@ export default function ContactPage() {
                     placeholder="john@example.com"
                   />
                 </div>
-                <div className={styles.formGroup}>
+                <div className="form-group">
                   <label htmlFor="phone">Phone *</label>
                   <input
                     type="tel"
@@ -103,13 +102,13 @@ export default function ContactPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    placeholder="(123) 456-7890"
+                    placeholder="071 406 3704"
                   />
                 </div>
               </div>
 
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
+              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px'}}>
+                <div className="form-group">
                   <label htmlFor="truckType">Truck Type</label>
                   <select
                     id="truckType"
@@ -125,7 +124,7 @@ export default function ContactPage() {
                     <option value="other">Other</option>
                   </select>
                 </div>
-                <div className={styles.formGroup}>
+                <div className="form-group">
                   <label htmlFor="service">Service Needed</label>
                   <select
                     id="service"
@@ -145,7 +144,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className={styles.formGroup}>
+              <div className="form-group">
                 <label htmlFor="message">Additional Details</label>
                 <textarea
                   id="message"
@@ -157,25 +156,35 @@ export default function ContactPage() {
                 />
               </div>
 
-              <button type="submit" className={styles.submitBtn} disabled={loading}>
+              <button type="submit" className="btn" disabled={loading} style={{width: '100%'}}>
                 {loading ? 'Sending...' : 'Get Free Quote'}
               </button>
             </form>
 
-            <div className={styles.info}>
-              <h3>Why Choose TS Truck Repairs?</h3>
-              <ul>
-                <li>✓ Expert Technicians with years of experience</li>
-                <li>✓ Fast turnaround time on repairs</li>
-                <li>✓ Competitive pricing and transparent quotes</li>
-                <li>✓ All work backed by warranty</li>
-                <li>✓ Free diagnostic evaluation</li>
+            <div style={{background: '#1a1a1a', padding: '40px', borderRadius: '12px', border: '1px solid rgba(0, 201, 167, 0.2)'}}>
+              <h3 style={{color: '#00c9a7', marginBottom: '20px', fontSize: '24px'}}>Why Choose TS Truck Repairs?</h3>
+              <ul style={{listStyle: 'none', marginBottom: '30px'}}>
+                <li style={{color: '#ccc', marginBottom: '12px', paddingLeft: '25px', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#00c9a7'}}>✓</span> Expert Technicians with years of experience
+                </li>
+                <li style={{color: '#ccc', marginBottom: '12px', paddingLeft: '25px', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#00c9a7'}}>✓</span> Fast turnaround time on repairs
+                </li>
+                <li style={{color: '#ccc', marginBottom: '12px', paddingLeft: '25px', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#00c9a7'}}>✓</span> Competitive pricing and transparent quotes
+                </li>
+                <li style={{color: '#ccc', marginBottom: '12px', paddingLeft: '25px', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#00c9a7'}}>✓</span> All work backed by warranty
+                </li>
+                <li style={{color: '#ccc', paddingLeft: '25px', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#00c9a7'}}>✓</span> Free diagnostic evaluation
+                </li>
               </ul>
 
-              <h3>Quick Contact</h3>
-              <p><strong>📞 Phone:</strong> <a href="tel:+1234567890">(123) 456-7890</a></p>
-              <p><strong>📧 Email:</strong> <a href="mailto:info@tstruckrepairs.com">info@tstruckrepairs.com</a></p>
-              <p><strong>📍 Location:</strong> Your City, State</p>
+              <h3 style={{color: '#00c9a7', marginBottom: '20px', fontSize: '24px'}}>Quick Contact</h3>
+              <p style={{color: '#aaa', marginBottom: '10px'}}><strong>📞 Phone:</strong> <a href="tel:0714063704" style={{color: '#00c9a7', textDecoration: 'none'}}>071 406 3704</a></p>
+              <p style={{color: '#aaa', marginBottom: '10px'}}><strong>📧 Email:</strong> <a href="mailto:tstruckrepairs@gmail.com" style={{color: '#00c9a7', textDecoration: 'none'}}>tstruckrepairs@gmail.com</a></p>
+              <p style={{color: '#aaa'}}><strong>📍 Location:</strong> 1 Oakbridge Place, Oaklands, Verulam 4339</p>
             </div>
           </div>
         </div>

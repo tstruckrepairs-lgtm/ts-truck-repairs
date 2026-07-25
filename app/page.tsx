@@ -25,7 +25,7 @@ export default function Home() {
       <section className="intro">
         <div className="container">
           <h2>Welcome to TS Truck Repairs</h2>
-          <p>We provide comprehensive truck repair solutions with expert technicians, modern diagnostic equipment, and a commitment to quality workmanship. Whether you need routine maintenance or emergency repairs, we're here to keep your truck running smoothly.</p>
+          <p>We provide comprehensive truck repair solutions with expert technicians, modern diagnostic equipment, and a commitment to quality workmanship. Whether you need routine maintenance or emergency repairs, we're here to keep your truck running smoothly. Based in Oaklands, Verulam, we serve the entire KwaZulu-Natal region.</p>
         </div>
       </section>
 
@@ -115,15 +115,15 @@ export default function Home() {
               <h3>Contact Information</h3>
               <div className="contact-item">
                 <span>📍</span>
-                <p>Oaklands, Verulam, KwaZulu-Natal</p>
+                <p>1 Oakbridge Place, Oaklands, Verulam 4339</p>
               </div>
               <div className="contact-item">
                 <span>📞</span>
-                <p><a href="tel:+1234567890">(123) 456-7890</a></p>
+                <p><a href="tel:0714063704">071 406 3704</a></p>
               </div>
               <div className="contact-item">
                 <span>📧</span>
-                <p><a href="mailto:info@tstruckrepairs.com">info@tstruckrepairs.com</a></p>
+                <p><a href="mailto:tstruckrepairs@gmail.com">tstruckrepairs@gmail.com</a></p>
               </div>
               <div className="contact-item">
                 <span>🕐</span>
