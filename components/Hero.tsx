@@ -9,7 +9,7 @@ export default function Hero() {
       <div className={styles.container}>
         <div className={styles.content}>
           <h2>Professional Truck Repair Services</h2>
-          <p>Expert mechanical repairs for all truck types. Fast, reliable, and affordable service you can trust.</p>
+          <p>Expert mechanical repairs for all truck types. Fast, reliable, and affordable.</p>
           <Link href="#contact" className={styles.cta}>
             Get a Quote
           </Link>

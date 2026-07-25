@@ -1,8 +1,7 @@
 .footer {
-  background-color: #1a1a2e;
+  background-color: #222;
   color: white;
   padding: 3rem 1rem 1rem;
-  border-top: 3px solid #00d4ff;
 }
 
 .container {
@@ -18,7 +17,6 @@
 .contact h4,
 .hours h4 {
   margin-bottom: 1rem;
-  color: #00d4ff;
 }
 
 .content p,
@@ -26,32 +24,22 @@
 .hours p {
   line-height: 1.8;
   opacity: 0.9;
-  color: #e0e0e0;
 }
 
 .contact a,
 .hours a {
-  color: #00d4ff;
+  color: #ff6b35;
   text-decoration: none;
-  transition: opacity 0.3s ease;
 }
 
 .contact a:hover,
 .hours a:hover {
-  opacity: 0.8;
   text-decoration: underline;
 }
 
 .bottom {
   text-align: center;
   padding-top: 2rem;
-  border-top: 1px solid rgba(0, 212, 255, 0.2);
-  opacity: 0.7;
-}
-
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
 }
