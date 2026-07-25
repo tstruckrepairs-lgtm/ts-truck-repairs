@@ -8,12 +8,15 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          <h1>TS Truck Repairs</h1>
+          <div className={styles.logoWrapper}>
+            <span className={styles.logoText}>TS</span>
+            <span className={styles.companyName}>Truck Repairs</span>
+          </div>
         </Link>
         <nav className={styles.nav}>
           <Link href="#services">Services</Link>
           <Link href="#contact">Contact</Link>
-          <Link href="#about">About</Link>
+          <Link href="/contact">Get Quote</Link>
         </nav>
       </div>
     </header>
