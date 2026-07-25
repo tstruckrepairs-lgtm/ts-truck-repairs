@@ -1,7 +1,7 @@
 {
   "name": "ts-truck-repairs",
   "version": "1.0.0",
-  "description": "Official website for TS Truck Repairs",
+  "description": "Official website for TS Truck Repairs - Professional Truck Repair Services in KwaZulu-Natal",
   "private": true,
   "scripts": {
     "dev": "next dev",
